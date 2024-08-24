@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block style %}
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .all_mov{
+        padding: 30px;
+        height: auto;
+        width: 100%;
+        /* background-color: rgb(104, 179, 225); */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .mov{
+        margin: 30px;
+        width: 28%;
+        height: 400px;
+        border: 3px dotted black;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    .img{
+        height: 60%;
+        width: 100%;
+        border: none;
+    }
+    .item{
+        margin: 30px;
+        width: 28%;
+        height: 600px;
+        border: 3px dotted black;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    .img{
+        height: 60%;
+        width: 100%;
+        
+    }
+    input[value|="Click Here"]{
+      background: linear-gradient(90deg,yellow,rgba(0, 128, 0, 0.621),yellow)
+    }
+    input[value|="Click Here"]:hover{
+      background: linear-gradient(90deg,rgba(0, 128, 0, 0.621),yellow,rgba(0, 128, 0, 0.621));
+    }
+  </style>
+{% endblock style %}
+{% block body %}
+  <div class="all_mov">
+    {% for i in MO %}
+      <!-- <a href="" class="item" style="color: black; text-decoration: none;"> -->
+      <form class="item"  method="post">
+        {% csrf_token %}
+          <img src="{{i.profile.url}}" alt="" class="img">
+          <div class="name">
+            <div class="item_name">
+              <center><h4>{{i.item_name}}</h4></center>
+            </div>
+            <div class="item_type">
+              <div class="type" id="{{i.item_type}}"></div>
+            </div>
+          </div>
+          <p>Movie Name :- {{i.movie_name}}</p>
+          <h6>Movie type :- {{i.movie_type}}</h6>
+          <h6>Quality :- {{i.quality}}</h6>
+          <h6>Language :- {{i.lang}}</h6>  
+          <input type="text" name="sl" value="{{i.movie_no}}" style="display: none;">
+          <center><input type="submit" value="Click Here"></center>
+        </form> 
+      <!-- </a> -->
+    {% endfor %}
+  </div>
+{% endblock body %}

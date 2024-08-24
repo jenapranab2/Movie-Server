@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block style %}
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        
+    }
+    .page{
+        width: 80%;
+        height: auto;
+        overflow: hidden;
+        display:flex;
+        flex-direction: column;
+        align-items: start;
+        background-color: blue;
+    }
+    .img{
+        width: 100%;
+    }
+    .profile{
+        height: 300px;
+    }
+    ul{
+        display:flex;
+        flex-direction: column;
+        align-items: start;
+    }
+    video{
+        width: 100%;
+    }
+    .opt{
+        height: 20vh;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        /* background-color: red; */
+    }
+    #play{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #down{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    </style>
+    <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+
+    
+{% endblock style %}
+{% block body %}
+<center style="background-color: aqua;">
+  <div class="page">
+    {% for i in movie %}
+      <h1><b>Watch online or Download {{i.movie_name}} Audio [{{i.lang}}] movie {{i.quality}}</b></h1><br><br>
+      <div class="img"><img class="profile" src="{{i.profile.url}}" alt="Unable to load"><br><br>
+      <h4>Movie name :- {{i.movie_name}}</h4>
+    </div>
+      
+      
+      <h3>Details :-</h3>
+      <ul>
+        <li><strong>Full name  :-</strong> {{i.movie_name}}</li>
+        <li><strong>Language :-</strong> {{i.lang}}</li>
+        <li><strong>Size :-</strong> {{i.movie_size}}</li>
+        <li><strong>Quality :-</strong> {{i.quality}}</li>
+        <li><strong>Type :-</strong> {{i.movie_type}}</li>
+      </ul>
+      <div class="opt">
+        <a href="{% url 'player' %}" id="play"><button style="background-color: rgb(218, 199, 112);" >Play Online</button></a>
+        <a href="{{i.movie.url}}" id="down" download="{{i.movie_name}}"><button style="background-color: rgb(235, 42, 190);" >Download</button></a>
+      </div>
+    {% endfor %}
+  </div>
+</center>
+<script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+{% endblock body %}

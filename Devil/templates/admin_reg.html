@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}
+  Admin Resistration
+{% endblock title %}
+{% block style %}
+  <style>
+    #reg{
+        height: 100vh;
+        width:100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        background-color: aquamarine;
+    }
+    form{
+        padding: 20px;
+        background-color: blanchedalmond;
+        border-radius: 10% 0% 10% 0%;
+    }
+   #submit{
+    width: 25%;
+   }
+  </style>
+{% endblock style %}
+{% block body %}
+  <center>
+   <div id="reg">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ ARF.as_p}}
+        <input id="submit" type="submit" name="Register">
+    </form>
+   </div>
+  </center>
+{% endblock body %}
